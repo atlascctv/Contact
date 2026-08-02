@@ -11,4 +11,13 @@
 - Fixed: per-person vCard now emits `N:` so saved contacts carry the name (app.js:44).
 - Fixed: WhatsApp glyph swapped for a generic line chat-bubble (#i-whatsapp).
 - Data: address is now "اصفهان، خیابان طالقانی، نبش بن‌بست ۱۵" everywhere (HTML + both vCards); website normalized to atlascctv.ir (old atlasctv.ir typo removed).
-- Company vCard: TEL 0315203 (WORK) + office mobile kept as CELL, URL atlascctv.ir, distributor NOTE. NOTE: 0315203 is only 7 digits — confirm the full landline.
+- Company vCard: TEL 031-5203 (WORK, special short office line, kept as-is per client) + office mobile kept as CELL, URL atlascctv.ir, distributor NOTE.
+- Office number: hero primary CTA and dock "تماس" now dial the short office line 031-5203 (was the sales mobile). Mobile 0913 877 8737 lives in the directory (Beheshti, sales).
+- Hero: full-screen (100dvh) centered landing with pulsing ISFAHAN·IRAN chip, white logo halo, red primary CTA, and a bouncing "بیشتر" scroll cue → #more.
+- Directory palette: each contact has an `accent` (Fariborz green #1f9268, others blue/teal/violet/rose/gold/cyan/terracotta). Avatar ring + all four action buttons use the person's accent (rest = accent ring+icon, hover = accent fill). No pastel-fill clash.
+- Avatars: gender person icons — male bust (#i-user-m), female A-line dress (#i-user-f). No initials.
+- Action buttons per contact (4): direct call, WhatsApp, office+extension (dials tel:0315203,,<داخلی>), save vCard. Building icon = #i-building.
+- WhatsApp: official brand glyph restored (#i-whatsapp, filled via inline fill=currentColor stroke=none, overrides the shared stroke rule).
+- Desktop: ≥1024px widens shell to 960px (1040 at ≥1360) with a two-column directory; hero logo/headline scale up.
+- Social preview: assets/atlas-contact-preview.png regenerated as a real business card (logo + fa/en name + title + phones + address + website), rendered via headless Chromium from scratchpad card.html. og/twitter image cache-bust ?v=20260803.
+- PENDING (requested, not yet done): EN/FA language toggle with RTL/LTR switch; logo in webp; replace brand text chips with real Hikvision/Dahua/Brighton logos (need the actual logo asset files).

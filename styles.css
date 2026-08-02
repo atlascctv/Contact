@@ -177,11 +177,11 @@ img{max-width:100%}
 .person:last-child{border-bottom:0}
 .mono{
   width:46px;height:46px;flex:none;display:grid;place-items:center;
-  border-radius:50%;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);
+  border-radius:50%;border:1.5px solid var(--c,var(--line-strong));background:#fff;color:var(--c,var(--ink-soft));
   transition:transform .3s var(--ease),border-color .25s,color .25s,box-shadow .3s var(--ease);
 }
 .mono svg{width:25px;height:25px;stroke-width:1.7}
-.person:hover .mono{border-color:var(--red);color:var(--red);transform:scale(1.06);box-shadow:0 8px 20px rgba(224,29,36,.12)}
+.person:hover .mono{background:var(--c);border-color:var(--c);color:#fff;transform:scale(1.06);box-shadow:0 8px 20px color-mix(in srgb,var(--c,var(--ink)) 30%,transparent)}
 .who{min-width:0}
 .who h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em}
 .who h3 small{color:var(--muted);font-size:10px;font-weight:500;margin-inline-start:6px;white-space:nowrap}
@@ -192,15 +192,15 @@ img{max-width:100%}
   color:var(--ink-soft);font:600 12px var(--font-en);letter-spacing:.04em;
   font-variant-numeric:tabular-nums;
 }
-.acts{display:flex;gap:6px}
+.acts{display:flex;gap:5px}
 .acts a,.acts button{
-  width:36px;height:36px;flex:none;display:grid;place-items:center;padding:0;
-  border:1px solid var(--line-strong);border-radius:50%;background:transparent;
-  color:var(--ink-soft);cursor:pointer;
-  transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s;
+  width:34px;height:34px;flex:none;display:grid;place-items:center;padding:0;
+  border:1px solid var(--c,var(--line-strong));border-radius:50%;background:transparent;
+  color:var(--c,var(--ink-soft));cursor:pointer;
+  transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s;
 }
 .acts svg{width:16px;height:16px}
-.acts a:hover,.acts button:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-2px)}
+.acts a:hover,.acts button:hover{background:var(--c,var(--red));border-color:var(--c,var(--red));color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px color-mix(in srgb,var(--c,var(--ink)) 30%,transparent)}
 .acts a:active,.acts button:active{transform:scale(.9)}
 
 /* ---- Footer ----------------------------------------------------------- */
@@ -288,10 +288,13 @@ footer small{font-size:8px;letter-spacing:.14em}
 @media(max-width:400px){
   .shell{padding-inline:17px}
   .btn{min-width:100%}
-  .brand{margin-top:40px}
   .dock{width:calc(100% - 16px);padding:7px 4px;border-radius:18px}
   .dock svg{width:18px;height:18px}
   .dock span{font-size:8px}
+  .person{gap:10px}
+  .acts{gap:4px}
+  .acts a,.acts button{width:32px;height:32px}
+  .acts svg{width:15px;height:15px}
 }
 
 @media(prefers-reduced-motion:reduce){
