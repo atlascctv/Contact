@@ -1,12 +1,14 @@
+const OFFICE = '0315203';
+
 const contacts = [
-  { name: 'آقای فریبرز بهشتی', extension: '۱۲۰', title: 'مدیر فروش', phone: '09138778737' },
-  { name: 'آقای حسینی‌نژاد', extension: '۱۰۳', title: 'کارشناس فروش', phone: '09134600576' },
-  { name: 'خانم نخعی', extension: '۱۰۲', title: 'کارشناس فروش', phone: '09134600254' },
-  { name: 'خانم بهشتی', extension: '۲۲۰', title: 'مدیر حسابداری', phone: '09134600224' },
-  { name: 'خانم بختیاری', extension: '۲۰۱', title: 'حسابداری', phone: '09133016997' },
-  { name: 'آقای توکلی', extension: '۳۲۰', title: 'فروش سازمانی', phone: '09134600573' },
-  { name: 'آقای منوچهری', extension: '۳۰۱', title: 'مدیر پروژه', phone: '09134600223' },
-  { name: 'آقای اسدی', extension: '۴۰۰', title: 'گارانتی و خدمات', phone: '09134600579' }
+  { name: 'آقای فریبرز بهشتی', extension: '۱۲۰', title: 'مدیر فروش', phone: '09138778737', accent: '#1f9268' },
+  { name: 'آقای حسینی‌نژاد', extension: '۱۰۳', title: 'کارشناس فروش', phone: '09134600576', accent: '#2f6fd6' },
+  { name: 'خانم نخعی', extension: '۱۰۲', title: 'کارشناس فروش', phone: '09134600254', accent: '#0f9aa0' },
+  { name: 'خانم بهشتی', extension: '۲۲۰', title: 'مدیر حسابداری', phone: '09134600224', accent: '#7a56d0' },
+  { name: 'خانم بختیاری', extension: '۲۰۱', title: 'حسابداری', phone: '09133016997', accent: '#d24e86' },
+  { name: 'آقای توکلی', extension: '۳۲۰', title: 'فروش سازمانی', phone: '09134600573', accent: '#c88a1e' },
+  { name: 'آقای منوچهری', extension: '۳۰۱', title: 'مدیر پروژه', phone: '09134600223', accent: '#2593c2' },
+  { name: 'آقای اسدی', extension: '۴۰۰', title: 'گارانتی و خدمات', phone: '09134600579', accent: '#cf6a3c' }
 ];
 
 const ADDRESS = 'اصفهان، خیابان طالقانی، نبش بن‌بست ۱۵';
@@ -16,6 +18,7 @@ const sprite = (name) => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>
 const normalize = (phone) => `+98${phone.slice(1)}`;
 const pretty = (phone) => phone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
 const persona = (name) => name.trim().startsWith('خانم') ? 'user-f' : 'user-m';
+const toLatin = (s) => s.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
 const fileName = (name) => `Atlas-${name.replaceAll(' ', '-')}.vcf`;
 
 document.querySelector('#contacts').innerHTML = contacts.map((person, index) => `
