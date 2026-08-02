@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/favicon.svg?v=20260805" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
     <meta property="og:type" content="website">
@@ -48,7 +48,11 @@
       <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21h16"/><rect x="6" y="3.5" width="12" height="17.5" rx="1.3"/><path d="M10 8h.01M14 8h.01M10 12h.01M14 12h.01M10.5 21v-3.6h3V21"/></symbol>
     </svg>
 
-    <div class="backdrop" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span></div>
+    <div class="backdrop" aria-hidden="true">
+      <img class="sentinel-camera" src="assets/security/sentinel-camera.webp" width="1536" height="1024" alt="">
+      <canvas class="security-field"></canvas>
+      <span class="glow glow-a"></span><span class="glow glow-b"></span>
+    </div>
     <button class="lang-toggle" type="button" aria-label="تغییر زبان به انگلیسی" data-aria-en="Switch language to Persian"><svg><use href="#i-globe"/></svg><span data-fa="EN" data-en="FA">EN</span></button>
 
     <main class="shell">
