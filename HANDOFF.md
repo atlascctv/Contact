@@ -25,6 +25,7 @@
 - Completed: added colored WebP brand logos for Hikvision, Dahua, and the exact user-supplied Briton logo with a transparent background.
 - Completed: added a persistent EN/FA language toggle, translated all static UI copy, translated contact names/titles, and re-rendered the directory by active language.
 - Verified: mobile Persian RTL and English LTR render correctly. All three brand assets load in full color.
+- Updated: all contact avatar circles are neutral at rest. Their contact color appears only on hover or focus.
 
 Deploy: main is live at https://atlascctv.github.io/Contact/ . Push to BOTH `git push contact main` (atlas/Pages) and `git push origin main` (mirror). HEAD ~6c840b4.
 Render/verify tooling (user rule: only render for asset gen / pre-push checks): Playwright venv `/Users/soeil/Documents/TRADE/OmegaTrader/venv/bin/python3`, Chromium at `~/Library/Caches/ms-playwright/chromium-1208/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`. OG business card source + renderer live in the session scratchpad (`card.html`, `render_card.py`) → outputs assets/atlas-contact-preview.png (bump `?v=` in index.html on change). SVG→webp: render via chromium then `sips -s format webp in.png --out out.webp`.

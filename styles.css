@@ -191,7 +191,7 @@ img{max-width:100%}
 .person:last-child{border-bottom:0}
 .mono{
   width:46px;height:46px;flex:none;display:grid;place-items:center;
-  border-radius:50%;border:1.5px solid var(--c,var(--line-strong));background:#fff;color:var(--c,var(--ink-soft));
+  border-radius:50%;border:1.5px solid var(--line-strong);background:#fff;color:var(--muted);
   transition:transform .3s var(--ease),border-color .25s,color .25s,box-shadow .3s var(--ease);
 }
 .mono svg{width:25px;height:25px;stroke-width:1.7}
