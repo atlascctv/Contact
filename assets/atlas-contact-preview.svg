@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f2ed"/>
+  <rect x="42" y="42" width="1116" height="546" rx="34" fill="#211f20"/>
+  <path d="M86 482h468" stroke="#ef1d27" stroke-width="8"/>
+  <text x="86" y="144" fill="#ef1d27" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="5">ATLAS ELECTRONIC</text>
+  <text x="86" y="245" fill="#f5f2ed" font-family="Arial, sans-serif" font-size="76" font-weight="700">CONTACT DIRECTORY</text>
+  <text x="86" y="304" fill="#c6c0ba" font-family="Arial, sans-serif" font-size="32">Sales · Service · Support · Isfahan</text>
+  <text x="86" y="447" fill="#f5f2ed" font-family="Arial, sans-serif" font-size="29">Call · WhatsApp · Save contact</text>
+  <text x="834" y="202" fill="#ef1d27" font-family="Arial, sans-serif" font-size="64" font-weight="800">ATLAS</text>
+  <text x="838" y="257" fill="#f5f2ed" font-family="Arial, sans-serif" font-size="45" font-style="italic">electronic</text>
+  <circle cx="892" cy="455" r="34" fill="#ef1d27"/><circle cx="978" cy="455" r="34" fill="#f5f2ed"/><circle cx="1064" cy="455" r="34" fill="#ef1d27"/>
+</svg>
