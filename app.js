@@ -1,11 +1,11 @@
 const contacts = [
-  { name: 'آقای فریبرز بهشتی', extension: '۱۲۰', title: 'تماس مستقیم', phone: '09138778737', color: '#d7e8f3', ink: '#215a80' },
-  { name: 'آقای حسینی‌نژاد', extension: '۱۰۳', title: 'تماس مستقیم', phone: '09134600576', color: '#e2e7ec', ink: '#435260' },
-  { name: 'خانم نخعی', extension: '۱۰۲', title: 'تماس مستقیم', phone: '09134600254', color: '#e5edf3', ink: '#355c79' },
-  { name: 'خانم بهشتی', extension: '۲۲۰', title: 'تماس مستقیم', phone: '09134600224', color: '#dce7df', ink: '#356044' },
-  { name: 'خانم بختیاری', extension: '۲۰۱', title: 'تماس مستقیم', phone: '09133016997', color: '#e5e0ed', ink: '#5c3c76' },
-  { name: 'آقای توکلی', extension: '۳۲۰', title: 'تماس مستقیم', phone: '09134600573', color: '#ece5db', ink: '#74592f' },
-  { name: 'آقای منوچهری', extension: '۳۰۱', title: 'تماس مستقیم', phone: '09134600223', color: '#dce7e7', ink: '#285d58' },
+  { name: 'آقای فریبرز بهشتی', extension: '۱۲۰', title: 'مدیر فروش', phone: '09138778737', color: '#d7e8f3', ink: '#215a80' },
+  { name: 'آقای حسینی‌نژاد', extension: '۱۰۳', title: 'کارشناس فروش', phone: '09134600576', color: '#e2e7ec', ink: '#435260' },
+  { name: 'خانم نخعی', extension: '۱۰۲', title: 'کارشناس فروش', phone: '09134600254', color: '#e5edf3', ink: '#355c79' },
+  { name: 'خانم بهشتی', extension: '۲۲۰', title: 'مدیر حسابداری', phone: '09134600224', color: '#dce7df', ink: '#356044' },
+  { name: 'خانم بختیاری', extension: '۲۰۱', title: 'حسابداری', phone: '09133016997', color: '#e5e0ed', ink: '#5c3c76' },
+  { name: 'آقای توکلی', extension: '۳۲۰', title: 'فروش سازمانی', phone: '09134600573', color: '#ece5db', ink: '#74592f' },
+  { name: 'آقای منوچهری', extension: '۳۰۱', title: 'مدیر پروژه', phone: '09134600223', color: '#dce7e7', ink: '#285d58' },
   { name: 'آقای اسدی', extension: '۴۰۰', title: 'گارانتی و خدمات', phone: '09134600579', color: '#f1e0db', ink: '#87472f' }
 ];
 
@@ -19,7 +19,7 @@ document.querySelector('#contacts').innerHTML = contacts.map((person, index) => 
     <div class="person-info"><h3>${person.name} <small>(داخلی ${person.extension})</small></h3><p>${person.title}</p><a class="number" href="tel:${normalize(person.phone)}">${person.phone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3')}</a></div>
     <div class="person-actions" aria-label="راه‌های تماس با ${person.name}">
       <a href="tel:${normalize(person.phone)}" aria-label="تماس با ${person.name}">${sprite('call')}</a>
-      <a href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="واتساپ ${person.name}">${sprite('chat')}</a>
+      <a href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="واتساپ ${person.name}">${sprite('whatsapp')}</a>
       <button type="button" data-vcf="${index}" aria-label="دانلود مخاطب ${person.name}">${sprite('download')}</button>
     </div>
   </article>`).join('');
