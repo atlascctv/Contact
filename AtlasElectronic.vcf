@@ -3,9 +3,10 @@ VERSION:3.0
 FN:اطلس الکترونیک
 N:اطلس الکترونیک;;;;
 ORG:اطلس الکترونیک
-TITLE:Electronic Components Store
+TITLE:سیستم‌های حفاظتی و نظارتی
+TEL;TYPE=WORK,VOICE:031-5203
 TEL;TYPE=CELL:+989138778737
-ADR;TYPE=WORK:;;اصفهان، خیابان طالقانی;اصفهان;;;ایران
-URL:https://atlascctv.github.io/Contact/
-NOTE:Electronic Components Store | Atlas CCTV
+ADR;TYPE=WORK:;;اصفهان، خیابان طالقانی، نبش بن‌بست ۱۵;اصفهان;;;ایران
+URL:https://atlascctv.ir
+NOTE:توزیع‌کننده دوربین مداربسته برندهای هایک‌ویژن، داهوا و برایتون
 END:VCARD
