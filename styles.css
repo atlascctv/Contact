@@ -158,7 +158,7 @@ img{max-width:100%}
   transition:transform .25s var(--ease),border-color .25s,background .25s;
 }
 .brands img{display:block;width:auto;height:27px;max-width:100%;object-fit:contain;transition:transform .25s var(--ease)}
-.brands img[alt="Briton"]{height:31px}
+.brands img[alt="Briton"]{height:35px}
 .brands li:hover{transform:translateY(-2px);border-color:var(--red);background:rgba(255,255,255,.5)}
 .brands li:hover img{transform:scale(1.04)}
 
@@ -250,7 +250,12 @@ footer small{font-size:8px;letter-spacing:.14em}
   color:var(--ink-soft);text-decoration:none;
   transition:color .2s,transform .2s var(--ease);
 }
-.dock a:hover{color:var(--red);transform:translateY(-2px)}
+.dock a:hover{transform:translateY(-2px)}
+.dock a:nth-child(1):hover{color:#2f7ad6}
+.dock a:nth-child(2):hover{color:#25d366}
+.dock a:nth-child(3):hover{color:#f08a24}
+.dock a:nth-child(4):hover{color:#d62976}
+.dock a:nth-child(5):hover{color:#8b5cf6}
 .dock a:active{transform:scale(.92)}
 .dock svg{width:20px;height:20px;stroke-width:2}
 .dock span{font-size:9px;font-weight:700;white-space:nowrap}
