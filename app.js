@@ -25,15 +25,15 @@ document.querySelector('#contacts').innerHTML = contacts.map((person, index) => 
   <article class="person" style="--d:${index * 70}ms;--c:${person.accent}">
     <span class="mono" aria-hidden="true">${sprite(persona(person.name))}</span>
     <div class="who">
-      <h3>${person.name} <small>داخلی ${person.extension}</small></h3>
-      <p>${person.title}</p>
+      <h3>${person.title} <small>داخلی ${person.extension}</small></h3>
+      <p>${person.name}</p>
       <a class="tel" dir="ltr" href="tel:${normalize(person.phone)}">${pretty(person.phone)}</a>
     </div>
     <div class="acts" aria-label="راه‌های تماس با ${person.name}">
-      <a href="tel:${normalize(person.phone)}" aria-label="تماس با ${person.name}">${sprite('call')}</a>
-      <a href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="واتساپ ${person.name}">${sprite('whatsapp')}</a>
-      <a href="tel:${OFFICE},,${toLatin(person.extension)}" aria-label="تماس با دفتر و داخلی ${person.extension}">${sprite('building')}</a>
-      <button type="button" data-vcf="${index}" aria-label="ذخیره مخاطب ${person.name}">${sprite('download')}</button>
+      <a class="a-call" href="tel:${normalize(person.phone)}" aria-label="تماس با ${person.name}">${sprite('call')}</a>
+      <a class="a-wa" href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="واتساپ ${person.name}">${sprite('whatsapp')}</a>
+      <a class="a-office" href="tel:${OFFICE},,${toLatin(person.extension)}" aria-label="تماس با دفتر و داخلی ${person.extension}">${sprite('building')}</a>
+      <button class="a-save" type="button" data-vcf="${index}" aria-label="ذخیره مخاطب ${person.name}">${sprite('download')}</button>
     </div>
   </article>`).join('');
 

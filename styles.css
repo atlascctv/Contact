@@ -195,12 +195,16 @@ img{max-width:100%}
 .acts{display:flex;gap:5px}
 .acts a,.acts button{
   width:34px;height:34px;flex:none;display:grid;place-items:center;padding:0;
-  border:1px solid var(--c,var(--line-strong));border-radius:50%;background:transparent;
-  color:var(--c,var(--ink-soft));cursor:pointer;
+  border:1px solid var(--b,var(--line-strong));border-radius:50%;background:transparent;
+  color:var(--b,var(--ink-soft));cursor:pointer;
   transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s;
 }
+.acts .a-call{--b:#2f7ad6}
+.acts .a-wa{--b:#25d366}
+.acts .a-office{--b:#8b5cf6}
+.acts .a-save{--b:#f08a24}
 .acts svg{width:16px;height:16px}
-.acts a:hover,.acts button:hover{background:var(--c,var(--red));border-color:var(--c,var(--red));color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px color-mix(in srgb,var(--c,var(--ink)) 30%,transparent)}
+.acts a:hover,.acts button:hover{background:var(--b,var(--red));border-color:var(--b,var(--red));color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px color-mix(in srgb,var(--b,var(--ink)) 30%,transparent)}
 .acts a:active,.acts button:active{transform:scale(.9)}
 
 /* ---- Footer ----------------------------------------------------------- */
