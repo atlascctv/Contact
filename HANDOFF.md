@@ -9,7 +9,7 @@
 - Added: "درباره اطلس الکترونیک" (About) section with humanized copy + brand chips (هایک‌ویژن/داهوا/برایتون), placed between hero and directory.
 - Removed: SUPPORT LINE service band (Asadi warranty contact still lives in the directory).
 - Fixed: per-person vCard now emits `N:` so saved contacts carry the name (app.js:44).
-- Fixed: WhatsApp glyph swapped for a generic line chat-bubble (#i-whatsapp).
+- Fixed: WhatsApp controls use the official filled WhatsApp brand mark (#i-whatsapp).
 - Data: address is now "اصفهان، خیابان طالقانی، نبش بن‌بست ۱۵" everywhere (HTML + both vCards); website normalized to atlascctv.ir (old atlasctv.ir typo removed).
 - Company vCard: TEL 031-5203 (WORK, special short office line, kept as-is per client) + office mobile kept as CELL, URL atlascctv.ir, distributor NOTE.
 - Office number: hero primary CTA and dock "تماس" now dial the short office line 031-5203 (was the sales mobile). Mobile 0913 877 8737 lives in the directory (Beheshti, sales).
@@ -20,12 +20,16 @@
 - WhatsApp: official brand glyph restored (#i-whatsapp, filled via inline fill=currentColor stroke=none, overrides the shared stroke rule).
 - Desktop: ≥1024px widens shell to 960px (1040 at ≥1360) with a two-column directory; hero logo/headline scale up.
 - Social preview: assets/atlas-contact-preview.png regenerated as a real business card (logo + fa/en name + title + phones + address + website), rendered via headless Chromium from scratchpad card.html. og/twitter image cache-bust ?v=20260803.
-## NEXT AGENT — remaining work (2 tasks, both user-approved)
+## NEXT AGENT — completed (0 tasks pending)
+
+- Completed: added colored WebP brand logos for Hikvision, Dahua, and the exact user-supplied Briton logo with a transparent background.
+- Completed: added a persistent EN/FA language toggle, translated all static UI copy, translated contact names/titles, and re-rendered the directory by active language.
+- Verified: mobile Persian RTL and English LTR render correctly. All three brand assets load in full color.
 
 Deploy: main is live at https://atlascctv.github.io/Contact/ . Push to BOTH `git push contact main` (atlas/Pages) and `git push origin main` (mirror). HEAD ~6c840b4.
 Render/verify tooling (user rule: only render for asset gen / pre-push checks): Playwright venv `/Users/soeil/Documents/TRADE/OmegaTrader/venv/bin/python3`, Chromium at `~/Library/Caches/ms-playwright/chromium-1208/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`. OG business card source + renderer live in the session scratchpad (`card.html`, `render_card.py`) → outputs assets/atlas-contact-preview.png (bump `?v=` in index.html on change). SVG→webp: render via chromium then `sips -s format webp in.png --out out.webp`.
 
-### TASK 1 — Brand logos (user chose "I source them")
+### TASK 1 — completed: Brand logos
 Replace the text chips in index.html `<ul class="brands">` (Hero/About section, ~line 73) with real logos in WEBP.
 - Hikvision SVG: `curl -L "https://commons.wikimedia.org/wiki/Special:FilePath/Hikvision_logo.svg" -o assets/brands/hikvision.svg`
 - Dahua SVG: `curl -L "https://commons.wikimedia.org/wiki/Special:FilePath/Dahua_Technology_logo.svg" -o assets/brands/dahua.svg`
@@ -33,7 +37,7 @@ Replace the text chips in index.html `<ul class="brands">` (Hero/About section, 
 - Convert each to webp (render svg in chromium at ~2x on transparent bg, sips to webp), save assets/brands/*.webp.
 - Markup: `<li><img src="assets/brands/hikvision.webp" alt="Hikvision" width="..." height="28"></li>` etc. CSS: uniform height ~26-30px, `filter:grayscale(1) opacity(.65)` at rest, full color on `:hover`, keep the row layout. Logos are language-neutral (fine for EN/FA).
 
-### TASK 2 — EN/FA language toggle (user chose "build now")
+### TASK 2 — completed: EN/FA language toggle
 Add a fixed lang-toggle button (top-left corner pill w/ globe + target-lang label). `let lang = localStorage.lang || 'fa'`. `applyLang(l)`: set `document.documentElement.lang=l; .dir = l==='fa'?'rtl':'ltr'`, swap every `[data-en]` element's text (store original as fa on first run), re-render #contacts in the chosen lang, update the toggle label, save to localStorage. Layout mostly uses logical props so LTR largely auto-flips; spot-check `.tel` text-align and the About red rule.
 Static strings to add `data-en` (fa is current content):
 - h1 → "Contact Atlas Electronic"; lead → "Professional, reliable security & video surveillance. For advice, purchase, or support, talk directly to an Atlas specialist."

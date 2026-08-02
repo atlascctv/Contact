@@ -49,7 +49,7 @@ img{max-width:100%}
 .sprite{position:absolute;width:0;height:0;overflow:hidden}
 
 /* Shared icon rendering (line style) */
-.btn svg,.company svg,.acts svg,.dock svg,.head-icon svg,.mono svg,.scroll-cue svg{
+.btn svg,.company svg,.acts svg,.dock svg,.head-icon svg,.mono svg,.scroll-cue svg,.lang-toggle svg{
   fill:none;stroke:currentColor;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round;
 }
@@ -78,6 +78,17 @@ img{max-width:100%}
 .brand::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.78),rgba(255,255,255,0) 62%);z-index:-1}
 .logo{width:142px;height:auto;display:block;animation:float 9s var(--ease) infinite}
+.lang-toggle{
+  position:fixed;z-index:30;top:max(14px,env(safe-area-inset-top));left:16px;
+  display:inline-flex;align-items:center;gap:7px;padding:8px 11px;
+  border:1px solid rgba(207,198,186,.92);border-radius:999px;background:rgba(250,248,244,.84);
+  color:var(--ink-soft);font:700 10px/1 var(--font-en);letter-spacing:.08em;cursor:pointer;
+  box-shadow:0 8px 24px rgba(27,25,25,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:color .2s,transform .2s var(--ease),border-color .2s,background .2s;
+}
+.lang-toggle svg{width:15px;height:15px}
+.lang-toggle:hover{color:var(--red);border-color:var(--red);background:rgba(255,255,255,.96);transform:translateY(-2px)}
+.lang-toggle:active{transform:scale(.95)}
 .eyebrow{
   margin:0;color:var(--red);
   font:700 10px/1.4 var(--font-en);letter-spacing:.24em;
@@ -140,13 +151,16 @@ img{max-width:100%}
   border-inline-end:2px solid var(--red);
   color:var(--ink-soft);font-size:15px;line-height:2.2;
 }
-.brands{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.brands{display:flex;gap:8px;margin:22px 0 0;padding:0;list-style:none}
 .brands li{
-  padding:8px 15px;border:1px solid var(--line-strong);border-radius:999px;
-  color:var(--ink-soft);font-size:13px;font-weight:600;
-  transition:transform .25s var(--ease),border-color .25s,color .25s,background .25s;
+  min-width:0;flex:1 1 0;height:48px;display:grid;place-items:center;padding:7px 10px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  transition:transform .25s var(--ease),border-color .25s,background .25s;
 }
-.brands li:hover{transform:translateY(-2px);border-color:var(--red);color:var(--red);background:rgba(255,255,255,.5)}
+.brands img{display:block;width:auto;height:27px;max-width:100%;object-fit:contain;transition:transform .25s var(--ease)}
+.brands img[alt="Briton"]{height:31px}
+.brands li:hover{transform:translateY(-2px);border-color:var(--red);background:rgba(255,255,255,.5)}
+.brands li:hover img{transform:scale(1.04)}
 
 /* ---- Company rows ----------------------------------------------------- */
 .company{border-top:1px solid var(--line)}
@@ -192,6 +206,7 @@ img{max-width:100%}
   color:var(--ink-soft);font:600 12px var(--font-en);letter-spacing:.04em;
   font-variant-numeric:tabular-nums;
 }
+[dir="ltr"] .tel{text-align:left}
 .acts{display:flex;gap:5px}
 .acts a,.acts button{
   width:34px;height:34px;flex:none;display:grid;place-items:center;padding:0;
