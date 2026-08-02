@@ -20,4 +20,30 @@
 - WhatsApp: official brand glyph restored (#i-whatsapp, filled via inline fill=currentColor stroke=none, overrides the shared stroke rule).
 - Desktop: ≥1024px widens shell to 960px (1040 at ≥1360) with a two-column directory; hero logo/headline scale up.
 - Social preview: assets/atlas-contact-preview.png regenerated as a real business card (logo + fa/en name + title + phones + address + website), rendered via headless Chromium from scratchpad card.html. og/twitter image cache-bust ?v=20260803.
-- PENDING (requested, not yet done): EN/FA language toggle with RTL/LTR switch; logo in webp; replace brand text chips with real Hikvision/Dahua/Brighton logos (need the actual logo asset files).
+## NEXT AGENT — remaining work (2 tasks, both user-approved)
+
+Deploy: main is live at https://atlascctv.github.io/Contact/ . Push to BOTH `git push contact main` (atlas/Pages) and `git push origin main` (mirror). HEAD ~6c840b4.
+Render/verify tooling (user rule: only render for asset gen / pre-push checks): Playwright venv `/Users/soeil/Documents/TRADE/OmegaTrader/venv/bin/python3`, Chromium at `~/Library/Caches/ms-playwright/chromium-1208/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`. OG business card source + renderer live in the session scratchpad (`card.html`, `render_card.py`) → outputs assets/atlas-contact-preview.png (bump `?v=` in index.html on change). SVG→webp: render via chromium then `sips -s format webp in.png --out out.webp`.
+
+### TASK 1 — Brand logos (user chose "I source them")
+Replace the text chips in index.html `<ul class="brands">` (Hero/About section, ~line 73) with real logos in WEBP.
+- Hikvision SVG: `curl -L "https://commons.wikimedia.org/wiki/Special:FilePath/Hikvision_logo.svg" -o assets/brands/hikvision.svg`
+- Dahua SVG: `curl -L "https://commons.wikimedia.org/wiki/Special:FilePath/Dahua_Technology_logo.svg" -o assets/brands/dahua.svg`
+- Brighton (Iranian CCTV brand, برایتون) is NOT on Wikimedia — find on an Iranian distributor site or recreate a clean wordmark SVG.
+- Convert each to webp (render svg in chromium at ~2x on transparent bg, sips to webp), save assets/brands/*.webp.
+- Markup: `<li><img src="assets/brands/hikvision.webp" alt="Hikvision" width="..." height="28"></li>` etc. CSS: uniform height ~26-30px, `filter:grayscale(1) opacity(.65)` at rest, full color on `:hover`, keep the row layout. Logos are language-neutral (fine for EN/FA).
+
+### TASK 2 — EN/FA language toggle (user chose "build now")
+Add a fixed lang-toggle button (top-left corner pill w/ globe + target-lang label). `let lang = localStorage.lang || 'fa'`. `applyLang(l)`: set `document.documentElement.lang=l; .dir = l==='fa'?'rtl':'ltr'`, swap every `[data-en]` element's text (store original as fa on first run), re-render #contacts in the chosen lang, update the toggle label, save to localStorage. Layout mostly uses logical props so LTR largely auto-flips; spot-check `.tel` text-align and the About red rule.
+Static strings to add `data-en` (fa is current content):
+- h1 → "Contact Atlas Electronic"; lead → "Professional, reliable security & video surveillance. For advice, purchase, or support, talk directly to an Atlas specialist."
+- CTA: "تماس با دفتر"→"Call the office"; "گروه واتساپ اطلس"→"Atlas WhatsApp group"; "عضویت"→"Join"; scroll "بیشتر"→"More".
+- About h2 → "About Atlas Electronic"; about-text → "Atlas Electronic is a designer, consultant, supplier and integrator of security projects, protection systems and network infrastructure. We are the official representative of Hikvision, Dahua and Brighton in Isfahan province, with you at every step from consultation and design to equipment supply and installation."
+- Company: address → "Taleghani St, Alley 15, Isfahan"; "ذخیره اطلاعات شرکت"→"Save company contact".
+- Directory h2 "مستقیم با تیم ما"→"Reach our team directly"; hint "تماس · واتساپ · ذخیره"→"Call · WhatsApp · Save".
+- Dock: تماس/Call, واتساپ/WhatsApp, لیست قیمت/Price list, اینستاگرام/Instagram, وب‌سایت/Website. (eyebrow/locus/footer already EN.)
+Directory contacts (app.js `contacts[]` — add `nameEn`,`titleEn`; render "داخلی"↔"Ext.", digits via existing `toLatin()`):
+- Titles: مدیر فروش=Sales Manager, کارشناس فروش=Sales Expert, مدیر حسابداری=Accounting Manager, حسابداری=Accounting, فروش سازمانی=Corporate Sales, مدیر پروژه=Project Manager, گارانتی و خدمات=Warranty & Service.
+- Names: Mr. Fariborz Beheshti, Mr. Hosseini-Nejad, Ms. Nakhaei, Ms. Beheshti, Ms. Bakhtiari, Mr. Tavakoli, Mr. Manouchehri, Mr. Asadi.
+
+Style rules to honor (global): no em dashes in client copy; humanized natural Persian. User is a dev — keep changes minimal, match existing code. Verify by rendering FA + EN before pushing.
