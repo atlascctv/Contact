@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://soheils2.github.io/atlas-electronic-nfc/sitemap.xml
+Sitemap: https://soheils2.github.io/Atlas/sitemap.xml
