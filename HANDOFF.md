@@ -29,6 +29,29 @@
 - Updated: Briton asset recropped from the supplied original so its orange swoosh is complete and its background is transparent. Dock hover colors now match each communication channel.
 - Updated (2026-08-02): security backdrop now uses a level product camera at upper-left with a scroll-driven rightward projection; it recalibrates immediately on window and visual-viewport resize.
 - Updated: favicon, root favicon.ico fallback, Apple touch icon, and PWA icons now use the original red-and-black Atlas mark.
+- Updated (2026-08-14): all shared vCards use Google Maps coordinates 32.65801780803478,51.659850516266076; added a local-logo social hub for Telegram, WhatsApp, Bale, and Eitaa; replaced the WhatsApp shortcuts with a scroll link to the hub; download center now points to my.files.ir.
+- Updated (2026-08-14): moved Instagram and the website from the dock into the first row of the social hub; dock call action remains `tel:0315203`.
+- Fixed (2026-08-14): removed the Briton-only logo height override so all brand marks share one vertically centered size.
+- Fixed (2026-08-14): applied a 1px upward optical offset to Briton artwork and separated the website social-card title/subtitle translations.
+- Updated (2026-08-14): rebuilt company information as social-style cards with a live Google Maps location card, an emphasized red phone-book vCard save card, and a download-center card.
+- Updated (2026-08-14): replaced the website social-card globe with the Atlas Electronic brand mark.
+- Updated (2026-08-14): directory avatars now use generated transparent male/female silhouette assets (`assets/avatars/male.png`, `female.png`) with white-on-accent hover treatment.
+- Updated (2026-08-14): bottom-dock call shortcut now scrolls to the team directory; the hero office-call action remains a phone link.
+- Updated (2026-08-14): removed the directory contact-method badge; each person now has four labelled actions placed beneath their details: call, WhatsApp, office extension, and save contact.
+- Fixed (2026-08-14): office-extension controls now use the direct `tel:0315203;ext=<extension>` format instead of a pause sequence.
+- Updated (2026-08-14): hero location chip now scrolls to the location map section.
+- Updated (2026-08-14): removed white circular avatar containers and enlarged the directory silhouette artwork to 62px.
+- Updated (2026-08-14): rebuilt the directory into a spacious two-column contact roster with larger silhouettes and borderless, labelled channel actions.
+- Updated (2026-08-14): renamed the Persian directory save action to «دفتر تلفن».
+- Updated (2026-08-14): renamed the English directory save action to “Contact”.
+- Updated (2026-08-14): reordered directory actions to mobile, office, WhatsApp, and phone book; added generated transparent Atlas-styled action icon sprite at `assets/action-icons/contact-actions.png`.
+- Fixed (2026-08-14): replaced the generated directory action sprite with web-sourced Lucide SVGs in `assets/actions/` after sprite cropping rendered incorrectly.
+- Updated (2026-08-14): directory phone-book actions now use the same download glyph as the prominent company phone-book card.
+- Corrected (2026-08-14): directory actions retain the sourced contact-book icon; the red company phone-book card now uses that icon instead.
+- Fixed (2026-08-14): directory actions now distribute across the text area while preserving empty space below the avatar column.
+- Fixed (2026-08-14): action bars now occupy the actual contact-text grid column, aligning their full width precisely beneath each title at all breakpoints.
+- Corrected (2026-08-14): title-column action alignment is now mobile-only; tablet and desktop retain their compact beside-contact action bars.
+- Fixed (2026-08-14): aligned the directory actions as a fixed-width contact bar beside each row from 560px upward, avoiding the full-row spread at intermediate widths.
 
 Deploy: main is live at https://atlascctv.github.io/Contact/ . Push to BOTH `git push contact main` (atlas/Pages) and `git push origin main` (mirror). HEAD ~6c840b4.
 Render/verify tooling (user rule: only render for asset gen / pre-push checks): Playwright venv `/Users/soeil/Documents/TRADE/OmegaTrader/venv/bin/python3`, Chromium at `~/Library/Caches/ms-playwright/chromium-1208/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`. OG business card source + renderer live in the session scratchpad (`card.html`, `render_card.py`) → outputs assets/atlas-contact-preview.png (bump `?v=` in index.html on change). SVG→webp: render via chromium then `sips -s format webp in.png --out out.webp`.

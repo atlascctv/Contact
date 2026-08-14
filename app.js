@@ -11,14 +11,18 @@ const contacts = [
   { name: 'آقای اسدی', nameEn: 'Mr. Asadi', extension: '۴۰۰', title: 'گارانتی و خدمات', titleEn: 'Warranty & Service', phone: '09134600579', gender: 'm', accent: '#cf6a3c' }
 ];
 
-const ADDRESS = 'اصفهان، خیابان طالقانی، نبش بن‌بست ۱۵';
+const LOCATION = 'موقعیت اطلس الکترونیک، اصفهان';
+const COORDINATES = '32.65801780803478;51.659850516266076';
+const MAP_URL = 'https://maps.google.com/maps?q=32.65801780803478,51.659850516266076';
 const WEBSITE = 'https://atlascctv.ir';
 
 const sprite = (name) => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const normalize = (phone) => `+98${phone.slice(1)}`;
 const pretty = (phone) => phone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
-const persona = (person) => `user-${person.gender}`;
+const avatar = (person) => person.gender === 'm' ? 'male' : 'female';
+const actionIcon = (name) => `<img class="action-icon" src="assets/actions/${name}.svg" alt="" aria-hidden="true">`;
 const toLatin = (s) => s.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+const officeExtension = (extension) => `tel:${OFFICE};ext=${toLatin(extension)}`;
 const fileName = (name) => `Atlas-${name.replaceAll(' ', '-')}.vcf`;
 let lang = localStorage.getItem('atlas-lang') === 'en' ? 'en' : 'fa';
 
@@ -30,21 +34,23 @@ const renderContacts = () => {
   document.querySelector('#contacts').innerHTML = contacts.map((person, index) => {
     const copy = contactCopy(person);
     const labels = lang === 'en'
-      ? { actions: `Ways to contact ${copy.name}`, call: `Call ${copy.name}`, whatsapp: `WhatsApp ${copy.name}`, office: `Call office, extension ${toLatin(person.extension)}`, save: `Save ${copy.name}` }
-      : { actions: `راه‌های تماس با ${copy.name}`, call: `تماس با ${copy.name}`, whatsapp: `واتساپ ${copy.name}`, office: `تماس با دفتر و ${copy.extension}`, save: `ذخیره مخاطب ${copy.name}` };
+      ? { actions: `Ways to contact ${copy.name}`, call: `Call ${copy.name}`, whatsapp: `WhatsApp ${copy.name}`, office: `Call office, extension ${toLatin(person.extension)}`, save: `Add ${copy.name} to contacts`, callShort: 'Mobile', whatsappShort: 'WhatsApp', officeShort: 'Office', saveShort: 'Contact' }
+      : { actions: `راه‌های تماس با ${copy.name}`, call: `تماس با ${copy.name}`, whatsapp: `واتساپ ${copy.name}`, office: `تماس با دفتر و ${copy.extension}`, save: `افزودن ${copy.name} به دفتر تلفن`, callShort: 'همراه', whatsappShort: 'واتس‌اپ', officeShort: 'دفتر', saveShort: 'دفتر تلفن' };
     return `
       <article class="person" style="--d:${index * 70}ms;--c:${person.accent}">
-        <span class="mono" aria-hidden="true">${sprite(persona(person))}</span>
-        <div class="who">
-          <h3>${copy.title} <small>${copy.extension}</small></h3>
-          <p>${copy.name}</p>
-          <a class="tel" dir="ltr" href="tel:${normalize(person.phone)}">${pretty(person.phone)}</a>
+        <div class="person-info">
+          <span class="mono" aria-hidden="true"><img src="assets/avatars/${avatar(person)}.png" width="256" height="256" alt=""></span>
+          <div class="who">
+            <h3>${copy.title} <small>${copy.extension}</small></h3>
+            <p>${copy.name}</p>
+            <a class="tel" dir="ltr" href="tel:${normalize(person.phone)}">${pretty(person.phone)}</a>
+          </div>
         </div>
         <div class="acts" aria-label="${labels.actions}">
-          <a class="a-call" href="tel:${normalize(person.phone)}" aria-label="${labels.call}">${sprite('call')}</a>
-          <a class="a-wa" href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="${labels.whatsapp}">${sprite('whatsapp')}</a>
-          <a class="a-office" href="tel:${OFFICE},,${toLatin(person.extension)}" aria-label="${labels.office}">${sprite('building')}</a>
-          <button class="a-save" type="button" data-vcf="${index}" aria-label="${labels.save}">${sprite('download')}</button>
+          <a class="a-call" href="tel:${normalize(person.phone)}" aria-label="${labels.call}">${actionIcon('mobile')}<span>${labels.callShort}</span></a>
+          <a class="a-office" href="${officeExtension(person.extension)}" aria-label="${labels.office}">${actionIcon('office')}<span>${labels.officeShort}</span></a>
+          <a class="a-wa" href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="${labels.whatsapp}">${actionIcon('whatsapp')}<span>${labels.whatsappShort}</span></a>
+          <button class="a-save" type="button" data-vcf="${index}" aria-label="${labels.save}">${actionIcon('contacts')}<span>${labels.saveShort}</span></button>
         </div>
       </article>`;
   }).join('');
@@ -347,7 +353,9 @@ document.addEventListener('click', (event) => {
     'ORG:اطلس الکترونیک',
     `TITLE:${copy.title} (${copy.extension})`,
     `TEL;TYPE=CELL:${normalize(person.phone)}`,
-    `ADR;TYPE=WORK:;;${ADDRESS};اصفهان;;;ایران`,
+    `ADR;TYPE=WORK:;;${LOCATION};اصفهان;;;ایران`,
+    `GEO:${COORDINATES}`,
+    `X-GOOGLE-MAPS-URL:${MAP_URL}`,
     `URL:${WEBSITE}`,
     'END:VCARD'
   ].join('\r\n');
