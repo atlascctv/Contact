@@ -54,6 +54,7 @@
 - Updated (2026-08-14): added a persistent Home action to the bottom dock that scrolls to page top.
 - Updated (2026-08-14): shortened social labels to «شبکه‌های اجتماعی», preserved two social cards per row on iPhone widths, and standardized the compact horizontal directory row across all breakpoints.
 - Fixed (2026-08-14): added explicit iPhone sizing for two-column social cards and single-line contact actions; the bottom dock now uses equal flex items so four shortcuts never wrap into an empty second row.
+- Updated (2026-08-14): office extension links now use `tel:0315203,,<extension>` to send DTMF digits after a timed pause on compatible mobile dialers.
 - Fixed (2026-08-14): aligned the directory actions as a fixed-width contact bar beside each row from 560px upward, avoiding the full-row spread at intermediate widths.
 
 Deploy: main is live at https://atlascctv.github.io/Contact/ . Push to BOTH `git push contact main` (atlas/Pages) and `git push origin main` (mirror). HEAD ~6c840b4.

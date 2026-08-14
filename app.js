@@ -22,7 +22,7 @@ const pretty = (phone) => phone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
 const avatar = (person) => person.gender === 'm' ? 'male' : 'female';
 const actionIcon = (name) => `<img class="action-icon" src="assets/actions/${name}.svg" alt="" aria-hidden="true">`;
 const toLatin = (s) => s.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
-const officeExtension = (extension) => `tel:${OFFICE};ext=${toLatin(extension)}`;
+const officeExtension = (extension) => `tel:${OFFICE},,${toLatin(extension)}`;
 const fileName = (name) => `Atlas-${name.replaceAll(' ', '-')}.vcf`;
 let lang = localStorage.getItem('atlas-lang') === 'en' ? 'en' : 'fa';
 
