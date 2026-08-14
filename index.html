@@ -130,6 +130,18 @@
       <a href="#socials"><svg><use href="#i-community"/></svg><span data-en="Socials">شبکه‌ها</span></a>
       <a href="https://my.files.ir/drive/s/ty3kTapXkKBuyoWOTGMGcQeVgIuvPn" target="_blank" rel="noopener"><svg><use href="#i-download"/></svg><span data-en="Downloads">دانلودها</span></a>
     </nav>
+
+    <div id="office-modal" class="office-modal" hidden>
+      <div class="office-modal-backdrop" data-office-close></div>
+      <section class="office-dialog" role="dialog" aria-modal="true" aria-labelledby="office-modal-person">
+        <button class="office-close" type="button" data-office-close aria-label="بستن">×</button>
+        <p class="kicker">OFFICE CALL</p>
+        <div class="office-contact-card"><img id="office-modal-avatar" src="assets/avatars/male.png" alt=""><span><strong id="office-modal-person"></strong><small id="office-modal-title"></small></span></div>
+        <p id="office-modal-copy"></p>
+        <div class="office-extension"><span id="office-modal-code-label"></span><strong id="office-modal-extension" dir="ltr"></strong></div>
+        <a id="office-modal-call" class="office-call" href="tel:0315203"><svg><use href="#i-call"/></svg><span id="office-modal-call-label"></span><b dir="ltr">031-5203</b></a>
+      </section>
+    </div>
     <script src="app.js" defer></script>
   </body>
 </html>

@@ -311,6 +311,22 @@ footer small{font-size:8px;letter-spacing:.14em}
 .dock svg{width:20px;height:20px;stroke-width:2}
 .dock span{font-size:9px;font-weight:700;white-space:nowrap}
 
+/* ---- Office extension prompt ---------------------------------------- */
+.modal-open{overflow:hidden}
+.office-modal{position:fixed;z-index:40;inset:0;display:grid;place-items:center;padding:24px;isolation:isolate}
+.office-modal[hidden]{display:none}
+.office-modal-backdrop{position:absolute;inset:0;background:rgba(27,25,25,.48);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.office-dialog{
+  position:relative;width:min(100%,400px);padding:30px;border:1px solid rgba(255,255,255,.78);border-radius:26px;
+  background:linear-gradient(145deg,#fffdf9,var(--paper-2));box-shadow:0 28px 70px rgba(27,25,25,.32);text-align:center;
+  animation:rise .35s var(--ease) both;
+}
+.office-close{position:absolute;top:12px;inset-inline-end:12px;width:32px;height:32px;border:1px solid var(--line-strong);border-radius:50%;background:rgba(255,255,255,.65);color:var(--ink-soft);font:400 24px/1 var(--font-en);cursor:pointer}
+.office-dialog>p:not(.kicker){margin:14px auto 0;color:var(--ink-soft);font-size:13px;line-height:1.8;max-width:290px}.office-contact-card{display:grid;grid-template-columns:50px minmax(0,1fr);align-items:center;gap:12px;margin:16px 0 0;padding:10px 12px;border:1px solid var(--line-strong);border-radius:18px;background:rgba(255,255,255,.64);text-align:start}.office-contact-card img{width:48px;height:48px;object-fit:contain;filter:brightness(0)}.office-contact-card span{display:grid;gap:3px;min-width:0}.office-contact-card strong{font-size:16px;line-height:1.2}.office-contact-card small{color:var(--muted);font-size:11px}
+.office-extension{display:grid;gap:4px;margin:22px 0 14px;padding:15px;border:1px solid var(--line-strong);border-radius:18px;background:rgba(255,255,255,.65)}
+.office-extension span{color:var(--muted);font-size:11px;font-weight:600}.office-extension strong{color:var(--red);font:800 34px/1 var(--font-en);letter-spacing:.08em}
+.office-call{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:9px;padding:13px 15px;border-radius:16px;background:var(--red);color:#fff;text-decoration:none;text-align:start;box-shadow:0 12px 24px rgba(224,29,36,.25);transition:transform .2s var(--ease),background .2s}.office-call:hover{background:#c8161c;transform:translateY(-2px)}.office-call svg{width:20px;height:20px}.office-call span{font-size:13px;font-weight:700}.office-call b{font:700 13px var(--font-en);letter-spacing:.05em}
+
 /* ---- Motion / reveal -------------------------------------------------- */
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}

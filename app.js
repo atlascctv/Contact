@@ -22,7 +22,6 @@ const pretty = (phone) => phone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
 const avatar = (person) => person.gender === 'm' ? 'male' : 'female';
 const actionIcon = (name) => `<img class="action-icon" src="assets/actions/${name}.svg" alt="" aria-hidden="true">`;
 const toLatin = (s) => s.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
-const officeExtension = (extension) => `tel:${OFFICE},,${toLatin(extension)}`;
 const fileName = (name) => `Atlas-${name.replaceAll(' ', '-')}.vcf`;
 let lang = localStorage.getItem('atlas-lang') === 'en' ? 'en' : 'fa';
 
@@ -48,7 +47,7 @@ const renderContacts = () => {
         </div>
         <div class="acts" aria-label="${labels.actions}">
           <a class="a-call" href="tel:${normalize(person.phone)}" aria-label="${labels.call}">${actionIcon('mobile')}<span>${labels.callShort}</span></a>
-          <a class="a-office" href="${officeExtension(person.extension)}" aria-label="${labels.office}">${actionIcon('office')}<span>${labels.officeShort}</span></a>
+          <button class="a-office" type="button" data-office-contact="${index}" aria-label="${labels.office}">${actionIcon('office')}<span>${labels.officeShort}</span></button>
           <a class="a-wa" href="https://wa.me/${normalize(person.phone).slice(1)}" target="_blank" rel="noopener" aria-label="${labels.whatsapp}">${actionIcon('whatsapp')}<span>${labels.whatsappShort}</span></a>
           <button class="a-save" type="button" data-vcf="${index}" aria-label="${labels.save}">${actionIcon('contacts')}<span>${labels.saveShort}</span></button>
         </div>
@@ -75,6 +74,28 @@ const applyLang = (nextLang) => {
 
 document.querySelector('.lang-toggle').addEventListener('click', () => applyLang(lang === 'fa' ? 'en' : 'fa'));
 applyLang(lang);
+
+const officeModal = document.querySelector('#office-modal');
+const closeOfficeModal = () => {
+  officeModal.hidden = true;
+  document.body.classList.remove('modal-open');
+};
+const openOfficeModal = (person) => {
+  const isEnglish = lang === 'en';
+  const copy = contactCopy(person);
+  officeModal.querySelector('#office-modal-title').textContent = copy.title;
+  officeModal.querySelector('#office-modal-person').textContent = copy.name;
+  officeModal.querySelector('#office-modal-avatar').src = `assets/avatars/${avatar(person)}.png`;
+  officeModal.querySelector('#office-modal-copy').textContent = isEnglish
+    ? 'When the call connects, enter this extension to reach the right person.'
+    : 'پس از برقراری تماس، این داخلی را وارد کنید تا به شخص موردنظر وصل شوید.';
+  officeModal.querySelector('#office-modal-code-label').textContent = isEnglish ? 'Extension' : 'داخلی';
+  officeModal.querySelector('#office-modal-extension').textContent = toLatin(person.extension);
+  officeModal.querySelector('#office-modal-call-label').textContent = isEnglish ? 'Call the office' : 'تماس با دفتر';
+  officeModal.hidden = false;
+  document.body.classList.add('modal-open');
+  officeModal.querySelector('.office-close').focus();
+};
 
 const initSecurityField = () => {
   const canvas = document.querySelector('.security-field');
@@ -341,6 +362,15 @@ const initSecurityField = () => {
 initSecurityField();
 
 document.addEventListener('click', (event) => {
+  const officeButton = event.target.closest('[data-office-contact]');
+  if (officeButton) {
+    openOfficeModal(contacts[Number(officeButton.dataset.officeContact)]);
+    return;
+  }
+  if (event.target.closest('[data-office-close]')) {
+    closeOfficeModal();
+    return;
+  }
   const button = event.target.closest('[data-vcf]');
   if (!button) return;
   const person = contacts[Number(button.dataset.vcf)];
@@ -363,6 +393,10 @@ document.addEventListener('click', (event) => {
   const link = Object.assign(document.createElement('a'), { href: url, download: fileName(copy.name) });
   link.click();
   URL.revokeObjectURL(url);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !officeModal.hidden) closeOfficeModal();
 });
 
 /* Reveal sections on scroll */
